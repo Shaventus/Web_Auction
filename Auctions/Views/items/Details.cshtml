@@ -1,0 +1,58 @@
+﻿@model Auctions.Models.item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.minprice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minprice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.buy_now)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.buy_now)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.iditem }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

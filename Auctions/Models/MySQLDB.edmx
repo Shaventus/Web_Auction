@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="auctionsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="idAccount" />
+          </Key>
+          <Property Name="idAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="surname" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="nick" Type="varchar" MaxLength="45" />
+          <Property Name="icon" Type="varchar" MaxLength="45" />
+          <Property Name="promo" Type="tinyint" />
+          <Property Name="age" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="account_has_role">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+            <PropertyRef Name="role_idrole" />
+          </Key>
+          <Property Name="account_idAccount" Type="int" Nullable="false" />
+          <Property Name="role_idrole" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.auctions.ban' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ban">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+          </Key>
+          <Property Name="account_idAccount" Type="int" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="45" />
+          <Property Name="date_end" Type="varchar" MaxLength="45" />
+          <Property Name="content" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.auctions.buy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="buy">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+            <PropertyRef Name="item_iditem" />
+          </Key>
+          <Property Name="account_idAccount" Type="int" Nullable="false" />
+          <Property Name="item_iditem" Type="int" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="idcategory" />
+          </Key>
+          <Property Name="idcategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.auctions.comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="item_iditem" />
+            <PropertyRef Name="account_idAccount" />
+          </Key>
+          <Property Name="item_iditem" Type="int" Nullable="false" />
+          <Property Name="account_idAccount" Type="int" Nullable="false" />
+          <Property Name="content" Type="text" />
+          <Property Name="score" Type="smallint" />
+        </EntityType>
+        <EntityType Name="favorite">
+          <Key>
+            <PropertyRef Name="idfavorite" />
+          </Key>
+          <Property Name="idfavorite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account_idAccount" Type="int" Nullable="false" />
+          <Property Name="item_iditem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="iditem" />
+          </Key>
+          <Property Name="iditem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="minprice" Type="varchar" MaxLength="45" />
+          <Property Name="price" Type="varchar" MaxLength="45" />
+          <Property Name="category_idcategory" Type="int" Nullable="false" />
+          <Property Name="buy_now" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="idrole" />
+          </Key>
+          <Property Name="idrole" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.auctions.sell' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sell">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+            <PropertyRef Name="item_iditem" />
+          </Key>
+          <Property Name="account_idAccount" Type="int" Nullable="false" />
+          <Property Name="item_iditem" Type="int" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_account_has_role_account">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="account_has_role" Type="Self.account_has_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="account_has_role">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_account_has_role_role1">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="account_has_role" Type="Self.account_has_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="idrole" />
+            </Principal>
+            <Dependent Role="account_has_role">
+              <PropertyRef Name="role_idrole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Ban_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="ban" Type="Self.ban" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="ban">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_buy_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_buy_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comment_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comment_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_favorite_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="favorite">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_favorite_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="favorite">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_item_category1">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="item" Type="Self.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="idcategory" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="category_idcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sell_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="sell" Type="Self.sell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="sell">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sell_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="sell" Type="Self.sell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="sell">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="auctionsModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="auctions" store:Type="Tables" />
+          <EntitySet Name="account_has_role" EntityType="Self.account_has_role" Schema="auctions" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="auctions" store:Type="Tables" />
+          <EntitySet Name="favorite" EntityType="Self.favorite" Schema="auctions" store:Type="Tables" />
+          <EntitySet Name="item" EntityType="Self.item" Schema="auctions" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="auctions" store:Type="Tables" />
+          <EntitySet Name="ban" EntityType="Self.ban" store:Type="Tables" store:Schema="auctions">
+            <DefiningQuery>SELECT
+`ban`.`account_idAccount`, 
+`ban`.`date`, 
+`ban`.`date_end`, 
+`ban`.`content`
+FROM `ban` AS `ban`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="buy" EntityType="Self.buy" store:Type="Tables" store:Schema="auctions">
+            <DefiningQuery>SELECT
+`buy`.`account_idAccount`, 
+`buy`.`item_iditem`, 
+`buy`.`date`
+FROM `buy` AS `buy`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="comment" EntityType="Self.comment" store:Type="Tables" store:Schema="auctions">
+            <DefiningQuery>SELECT
+`comment`.`item_iditem`, 
+`comment`.`account_idAccount`, 
+`comment`.`content`, 
+`comment`.`score`
+FROM `comment` AS `comment`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sell" EntityType="Self.sell" store:Type="Tables" store:Schema="auctions">
+            <DefiningQuery>SELECT
+`sell`.`account_idAccount`, 
+`sell`.`item_iditem`, 
+`sell`.`date`
+FROM `sell` AS `sell`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_account_has_role_account" Association="Self.fk_account_has_role_account">
+            <End Role="account" EntitySet="account" />
+            <End Role="account_has_role" EntitySet="account_has_role" />
+          </AssociationSet>
+          <AssociationSet Name="fk_account_has_role_role1" Association="Self.fk_account_has_role_role1">
+            <End Role="role" EntitySet="role" />
+            <End Role="account_has_role" EntitySet="account_has_role" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Ban_account1" Association="Self.fk_Ban_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="ban" EntitySet="ban" />
+          </AssociationSet>
+          <AssociationSet Name="fk_buy_account1" Association="Self.fk_buy_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="buy" EntitySet="buy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_buy_item1" Association="Self.fk_buy_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="buy" EntitySet="buy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comment_account1" Association="Self.fk_Comment_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comment_item1" Association="Self.fk_Comment_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_favorite_account1" Association="Self.fk_favorite_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="favorite" EntitySet="favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_favorite_item1" Association="Self.fk_favorite_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="favorite" EntitySet="favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_item_category1" Association="Self.fk_item_category1">
+            <End Role="category" EntitySet="category" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sell_account1" Association="Self.fk_sell_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="sell" EntitySet="sell" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sell_item1" Association="Self.fk_sell_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="sell" EntitySet="sell" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="auctionsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="idAccount" />
+          </Key>
+          <Property Name="idAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="surname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nick" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="icon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="promo" Type="SByte" />
+          <Property Name="age" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ban" Relationship="Self.fk_Ban_account1" FromRole="account" ToRole="ban" />
+          <NavigationProperty Name="buy" Relationship="Self.fk_buy_account1" FromRole="account" ToRole="buy" />
+          <NavigationProperty Name="comment" Relationship="Self.fk_Comment_account1" FromRole="account" ToRole="comment" />
+          <NavigationProperty Name="favorite" Relationship="Self.fk_favorite_account1" FromRole="account" ToRole="favorite" />
+          <NavigationProperty Name="sell" Relationship="Self.fk_sell_account1" FromRole="account" ToRole="sell" />
+          <NavigationProperty Name="role" Relationship="Self.account_has_role" FromRole="account" ToRole="role" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="idcategory" />
+          </Key>
+          <Property Name="idcategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="item" Relationship="Self.fk_item_category1" FromRole="category" ToRole="item" />
+        </EntityType>
+        <EntityType Name="favorite">
+          <Key>
+            <PropertyRef Name="idfavorite" />
+          </Key>
+          <Property Name="idfavorite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account_idAccount" Type="Int32" Nullable="false" />
+          <Property Name="item_iditem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="Self.fk_favorite_account1" FromRole="favorite" ToRole="account" />
+          <NavigationProperty Name="item" Relationship="Self.fk_favorite_item1" FromRole="favorite" ToRole="item" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="iditem" />
+          </Key>
+          <Property Name="iditem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="minprice" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="category_idcategory" Type="Int32" Nullable="false" />
+          <Property Name="buy_now" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.fk_item_category1" FromRole="item" ToRole="category" />
+          <NavigationProperty Name="favorite" Relationship="Self.fk_favorite_item1" FromRole="item" ToRole="favorite" />
+          <NavigationProperty Name="buy" Relationship="Self.fk_buy_item1" FromRole="item" ToRole="buy" />
+          <NavigationProperty Name="comment" Relationship="Self.fk_Comment_item1" FromRole="item" ToRole="comment" />
+          <NavigationProperty Name="sell" Relationship="Self.fk_sell_item1" FromRole="item" ToRole="sell" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="idrole" />
+          </Key>
+          <Property Name="idrole" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="account" Relationship="Self.account_has_role" FromRole="role" ToRole="account" />
+        </EntityType>
+        <EntityType Name="ban">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+          </Key>
+          <Property Name="account_idAccount" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="date_end" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="account" Relationship="Self.fk_Ban_account1" FromRole="ban" ToRole="account" />
+        </EntityType>
+        <EntityType Name="buy">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+            <PropertyRef Name="item_iditem" />
+          </Key>
+          <Property Name="account_idAccount" Type="Int32" Nullable="false" />
+          <Property Name="item_iditem" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="account" Relationship="Self.fk_buy_account1" FromRole="buy" ToRole="account" />
+          <NavigationProperty Name="item" Relationship="Self.fk_buy_item1" FromRole="buy" ToRole="item" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="item_iditem" />
+            <PropertyRef Name="account_idAccount" />
+          </Key>
+          <Property Name="item_iditem" Type="Int32" Nullable="false" />
+          <Property Name="account_idAccount" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="score" Type="Int16" />
+          <NavigationProperty Name="account" Relationship="Self.fk_Comment_account1" FromRole="comment" ToRole="account" />
+          <NavigationProperty Name="item" Relationship="Self.fk_Comment_item1" FromRole="comment" ToRole="item" />
+        </EntityType>
+        <EntityType Name="sell">
+          <Key>
+            <PropertyRef Name="account_idAccount" />
+            <PropertyRef Name="item_iditem" />
+          </Key>
+          <Property Name="account_idAccount" Type="Int32" Nullable="false" />
+          <Property Name="item_iditem" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="account" Relationship="Self.fk_sell_account1" FromRole="sell" ToRole="account" />
+          <NavigationProperty Name="item" Relationship="Self.fk_sell_item1" FromRole="sell" ToRole="item" />
+        </EntityType>
+        <Association Name="fk_Ban_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="ban" Type="Self.ban" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="ban">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_buy_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comment_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_favorite_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="favorite">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sell_account1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="sell" Type="Self.sell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="idAccount" />
+            </Principal>
+            <Dependent Role="sell">
+              <PropertyRef Name="account_idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_item_category1">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="item" Type="Self.item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="idcategory" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="category_idcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_favorite_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="favorite">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_buy_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="buy" Type="Self.buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="buy">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Comment_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sell_item1">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="sell" Type="Self.sell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="sell">
+              <PropertyRef Name="item_iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_has_role">
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <End Role="role" Type="Self.role" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="auctionsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="account" EntityType="Self.account" />
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="favorite" EntityType="Self.favorite" />
+          <EntitySet Name="item" EntityType="Self.item" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="ban" EntityType="Self.ban" />
+          <EntitySet Name="buy" EntityType="Self.buy" />
+          <EntitySet Name="comment" EntityType="Self.comment" />
+          <EntitySet Name="sell" EntityType="Self.sell" />
+          <AssociationSet Name="fk_Ban_account1" Association="Self.fk_Ban_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="ban" EntitySet="ban" />
+          </AssociationSet>
+          <AssociationSet Name="fk_buy_account1" Association="Self.fk_buy_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="buy" EntitySet="buy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comment_account1" Association="Self.fk_Comment_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_favorite_account1" Association="Self.fk_favorite_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="favorite" EntitySet="favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sell_account1" Association="Self.fk_sell_account1">
+            <End Role="account" EntitySet="account" />
+            <End Role="sell" EntitySet="sell" />
+          </AssociationSet>
+          <AssociationSet Name="fk_item_category1" Association="Self.fk_item_category1">
+            <End Role="category" EntitySet="category" />
+            <End Role="item" EntitySet="item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_favorite_item1" Association="Self.fk_favorite_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="favorite" EntitySet="favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_buy_item1" Association="Self.fk_buy_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="buy" EntitySet="buy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Comment_item1" Association="Self.fk_Comment_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sell_item1" Association="Self.fk_sell_item1">
+            <End Role="item" EntitySet="item" />
+            <End Role="sell" EntitySet="sell" />
+          </AssociationSet>
+          <AssociationSet Name="account_has_role" Association="Self.account_has_role">
+            <End Role="account" EntitySet="account" />
+            <End Role="role" EntitySet="role" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="auctionsModelStoreContainer" CdmEntityContainer="auctionsEntities">
+          <EntitySetMapping Name="account">
+            <EntityTypeMapping TypeName="auctionsModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nick" ColumnName="nick" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="promo" ColumnName="promo" />
+                <ScalarProperty Name="age" ColumnName="age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="auctionsModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="idcategory" ColumnName="idcategory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="favorite">
+            <EntityTypeMapping TypeName="auctionsModel.favorite">
+              <MappingFragment StoreEntitySet="favorite">
+                <ScalarProperty Name="idfavorite" ColumnName="idfavorite" />
+                <ScalarProperty Name="account_idAccount" ColumnName="account_idAccount" />
+                <ScalarProperty Name="item_iditem" ColumnName="item_iditem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item">
+            <EntityTypeMapping TypeName="auctionsModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="iditem" ColumnName="iditem" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="minprice" ColumnName="minprice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="category_idcategory" ColumnName="category_idcategory" />
+                <ScalarProperty Name="buy_now" ColumnName="buy_now" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="auctionsModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="idrole" ColumnName="idrole" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ban">
+            <EntityTypeMapping TypeName="auctionsModel.ban">
+              <MappingFragment StoreEntitySet="ban">
+                <ScalarProperty Name="account_idAccount" ColumnName="account_idAccount" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="date_end" ColumnName="date_end" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buy">
+            <EntityTypeMapping TypeName="auctionsModel.buy">
+              <MappingFragment StoreEntitySet="buy">
+                <ScalarProperty Name="account_idAccount" ColumnName="account_idAccount" />
+                <ScalarProperty Name="item_iditem" ColumnName="item_iditem" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment">
+            <EntityTypeMapping TypeName="auctionsModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="item_iditem" ColumnName="item_iditem" />
+                <ScalarProperty Name="account_idAccount" ColumnName="account_idAccount" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sell">
+            <EntityTypeMapping TypeName="auctionsModel.sell">
+              <MappingFragment StoreEntitySet="sell">
+                <ScalarProperty Name="account_idAccount" ColumnName="account_idAccount" />
+                <ScalarProperty Name="item_iditem" ColumnName="item_iditem" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="account_has_role" TypeName="auctionsModel.account_has_role" StoreEntitySet="account_has_role">
+            <EndProperty Name="account">
+              <ScalarProperty Name="idAccount" ColumnName="account_idAccount" />
+            </EndProperty>
+            <EndProperty Name="role">
+              <ScalarProperty Name="idrole" ColumnName="role_idrole" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

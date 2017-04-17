@@ -1,0 +1,82 @@
+﻿@model Auctions.Models.account
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.icon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.icon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.promo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ban.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ban.date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idAccount }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

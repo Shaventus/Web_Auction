@@ -1,0 +1,88 @@
+﻿@model Auctions.Models.account
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.icon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.icon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.promo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ban.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ban.date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
