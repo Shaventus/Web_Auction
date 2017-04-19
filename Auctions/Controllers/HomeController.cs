@@ -8,27 +8,63 @@ namespace Auctions.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+
+        public ActionResult login()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+        public ActionResult blog_single()
+        {
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult blog()
         {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult cart()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+        public ActionResult checkout()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult contact_us()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult product_details()
+        {
+            ViewBag.Message = "Your application description page.";
+
             return View();
         }
     }
