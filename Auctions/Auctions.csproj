@@ -338,7 +338,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -391,8 +393,10 @@
     <Content Include="Views\Home\cart.cshtml" />
     <Content Include="Views\Home\checkout.cshtml" />
     <Content Include="Views\Home\contact_us.cshtml" />
+    <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Home\product_details.cshtml" />
     <Content Include="Views\Home\shop.cshtml" />
+    <Content Include="Views\Home\registr.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -403,12 +407,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\AfterLoged.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
