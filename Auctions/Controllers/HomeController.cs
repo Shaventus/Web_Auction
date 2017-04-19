@@ -26,12 +26,6 @@ namespace Auctions.Controllers
             return View();
         }
 
-        public ActionResult login()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
 
         // GET: accounts/Create
         public ActionResult registr()
@@ -98,5 +92,37 @@ namespace Auctions.Controllers
 
             return View();
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(account a)
+        {
+            if (ModelState.IsValid)
+            {
+                using (auctionsEntities db = new auctionsEntities())
+                {
+                    var v = db.account.Where(u => u.nick.Equals(a.nick) && u.password.Equals(a.password)).FirstOrDefault();
+                    if (v != null)
+                    {
+                        Session["LogedUserID"] = v.idAccount.ToString();
+                        Session["LoggesAs"] = v.nick.ToString();
+                        return RedirectToAction("index");
+                    }
+
+                }
+
+            }
+            return View(a);
+        }
+        public ActionResult AfterLoged()
+        {
+            return View();
+
+        }
+
     }
 }
