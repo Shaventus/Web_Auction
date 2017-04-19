@@ -11,7 +11,8 @@ namespace Auctions.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class account
     {
         public account()
@@ -26,7 +27,10 @@ namespace Auctions.Models
         public int idAccount { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
+        [Required(ErrorMessage = "Hasło!", AllowEmptyStrings = false)]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public string password { get; set; }
+        [Required(ErrorMessage = "Nick!", AllowEmptyStrings = false)]
         public string nick { get; set; }
         public string icon { get; set; }
         public Nullable<sbyte> promo { get; set; }
