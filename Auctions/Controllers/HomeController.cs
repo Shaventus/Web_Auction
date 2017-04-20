@@ -34,9 +34,7 @@ namespace Auctions.Controllers
             return View();
         }
 
-        // POST: accounts/Create
-        // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
-        // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
+  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult registr([Bind(Include = "idAccount,name,surname,password,nick,icon,promo,age")] account account)
@@ -116,7 +114,9 @@ namespace Auctions.Controllers
                 }
 
             }
+            ViewBag.Message = "Niepoprawny login lub hasło";
             return View(a);
+            
         }
         public ActionResult AfterLoged()
         {
