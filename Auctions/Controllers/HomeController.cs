@@ -14,17 +14,52 @@ namespace Auctions.Controllers
     {
         private auctionsEntities db = new auctionsEntities();
 
-        public ActionResult index()
-        {
-            return View();
-        }
-
 
         public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
             var item = db.item.Include(i => i.category);
             return View(item.ToList());
+        }
+
+        public ActionResult profile()
+        {
+            if (Session["LogedUserID"] != null)
+            {
+                int id = int.Parse((String)Session["LogedUserID"]);
+                if (id == 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                account account = db.account.Find(id);
+                if (account == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.idAccount = new SelectList(db.ban, "account_idAccount", "date", account.idAccount);
+                return View(account);
+            }
+            return View();
+        }
+
+        public ActionResult favorites()
+        {
+            var favorite = db.favorite.Include(f => f.account).Include(f => f.item);
+            return View(favorite.ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult profile([Bind(Include = "idAccount,name,surname,password,nick,icon,promo,age")] account account)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(account).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.idAccount = new SelectList(db.ban, "account_idAccount", "date", account.idAccount);
+            return View(account);
         }
 
 
@@ -109,7 +144,7 @@ namespace Auctions.Controllers
                     {
                         Session["LogedUserID"] = v.idAccount.ToString();
                         Session["LoggedAs"] = v.nick.ToString();
-                        return RedirectToAction("shop");
+                        return RedirectToAction("index");
                     }
 
                 }
@@ -119,10 +154,16 @@ namespace Auctions.Controllers
             return View(a);
 
         }
-        public ActionResult LogOut()
+        public ActionResult index()
         {
-            Session.Clear(); 
-            return RedirectToAction("index");
+            if (Session["LogedUserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
     }
