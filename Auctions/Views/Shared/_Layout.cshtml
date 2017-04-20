@@ -38,18 +38,19 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><i class="fa fa-user">@Html.ActionLink(" Moje konto", "Profile", "home")</i> </li>
+                                
                                 <li><i class="fa fa-star">@Html.ActionLink("Lista życzen", "index", "home")</i> </li>
                                 <li><i class="fa fa-crosshairs">@Html.ActionLink("Checkout", "checkout", "home")</i> </li>
                                 @if (Session["LogedUserID"] != null)
                                 {
                                     <li><i class="fa fa-lock">@Html.ActionLink("Wyloguj", "LogOut", "home")</i> </li>
+                                    <li><i class="fa fa-user">@Html.ActionLink(" Moje konto", "Profile", "home")</i> </li>
                                 }
                                 else
                                 {
                                     <li><i class="fa fa-lock">@Html.ActionLink("Zaloguj", "login", "home")</i> </li>
                                 }
-                                <li><i class="fa fa-lock">@Html.ActionLink("Zaloguj", "login", "home")</i> </li>
+                               
 
                             </ul>
                         </div>
