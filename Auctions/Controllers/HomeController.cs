@@ -19,6 +19,7 @@ namespace Auctions.Controllers
             return View();
         }
 
+
         public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
