@@ -161,7 +161,7 @@ namespace Auctions.Controllers
         }
         public ActionResult LogOut()
         {
-            Session.Clear();
+            Session.Clear(); 
             return RedirectToAction("index");
         }
 
