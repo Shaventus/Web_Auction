@@ -15,6 +15,11 @@ namespace Auctions.Controllers
         private auctionsEntities db = new auctionsEntities();
 
 
+        public ActionResult index()
+        {
+            return View();
+        }
+
         public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
@@ -144,7 +149,7 @@ namespace Auctions.Controllers
                     {
                         Session["LogedUserID"] = v.idAccount.ToString();
                         Session["LoggedAs"] = v.nick.ToString();
-                        return RedirectToAction("index");
+                        return RedirectToAction("shop");
                     }
 
                 }
@@ -154,16 +159,10 @@ namespace Auctions.Controllers
             return View(a);
 
         }
-        public ActionResult index()
+        public ActionResult LogOut()
         {
-            if (Session["LogedUserID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            Session.Clear();
+            return RedirectToAction("index");
         }
 
     }
