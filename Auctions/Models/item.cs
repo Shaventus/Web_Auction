@@ -28,6 +28,7 @@ namespace Auctions.Models
         public string price { get; set; }
         public int category_idcategory { get; set; }
         public sbyte buy_now { get; set; }
+        public String image { get; set; }
     
         public virtual category category { get; set; }
         public virtual ICollection<favorite> favorite { get; set; }
