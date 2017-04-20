@@ -13,10 +13,6 @@ namespace Auctions.Controllers
     public class HomeController : Controller
     {
         private auctionsEntities db = new auctionsEntities();
-        public ActionResult index()
-        {
-            return View();
-        }
 
 
         public ActionResult shop()
@@ -34,7 +30,7 @@ namespace Auctions.Controllers
             return View();
         }
 
-  
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult registr([Bind(Include = "idAccount,name,surname,password,nick,icon,promo,age")] account account)
@@ -107,7 +103,7 @@ namespace Auctions.Controllers
                     if (v != null)
                     {
                         Session["LogedUserID"] = v.idAccount.ToString();
-                        Session["LoggesAs"] = v.nick.ToString();
+                        Session["LoggedAs"] = v.nick.ToString();
                         return RedirectToAction("index");
                     }
 
@@ -116,13 +112,20 @@ namespace Auctions.Controllers
             }
             ViewBag.Message = "Niepoprawny login lub hasło";
             return View(a);
-            
-        }
-        public ActionResult AfterLoged()
-        {
-            return View();
 
+        }
+        public ActionResult index()
+        {
+            if (Session["LogedUserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
     }
 }
+
