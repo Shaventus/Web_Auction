@@ -48,7 +48,7 @@ namespace Auctions.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "iditem,name,minprice,price,category_idcategory,buy_now,image")] item item)
+        public ActionResult Create([Bind(Include = "iditem,name,minprice,price,category_idcategory,buy_now, image")] item item)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Auctions.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "iditem,name,minprice,price,category_idcategory,buy_now,image")] item item)
+        public ActionResult Edit([Bind(Include = "iditem,name,minprice,price,category_idcategory,buy_now, image")] item item)
         {
             if (ModelState.IsValid)
             {
