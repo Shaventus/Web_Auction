@@ -22,8 +22,8 @@ namespace Auctions.Controllers
         public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
+            var item = db.item.Include(i => i.category);
+            return View(item.ToList());
         }
 
 
