@@ -399,6 +399,7 @@
     <Content Include="Views\Home\registr.cshtml" />
     <Content Include="Views\Home\profile.cshtml" />
     <Content Include="Views\Home\favorites.cshtml" />
+    <Content Include="Views\Home\MyAuctions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
