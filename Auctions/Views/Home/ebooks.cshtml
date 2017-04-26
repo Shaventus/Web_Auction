@@ -1,0 +1,76 @@
+﻿@model Auctions.Models.account
+
+@{
+    ViewBag.Title = "E-booki";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<a href="~/Views/Home/e-booki.cshtml"></a>
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="left-sidebar">
+            <h2>Moje konto</h2>
+            <div class="panel-group category-products" id="accordian">
+                <!--category-productsr-->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"> <a @Html.ActionLink("Moje aukcje", "MyAuctions", "home")> </a> </h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("Obserwowane", "observed", "home")> </a></h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("E-booki", "ebooks", "home")></a></h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("Pay-U", "payu", "home")></a></h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("Kupione", "bought", "home")></a></h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("Komentarze", "comments", "home")></a></h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("Edytuj dane", "profile", "home")></a></h4>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a @Html.ActionLink("Ustawienia zakupów", "shoppingSettings", "home")></a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/category-products-->
+
+    <div class="col-sm-9 padding-right">
+        Zawartość strony
+    </div>
+</div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

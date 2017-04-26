@@ -24,37 +24,37 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Obserwowane</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("Obserwowane", "observed", "home")> </a></h4>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">E-booki</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("E-booki", "ebooks", "home")></a></h4>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Pay-U</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("Pay-U", "payu", "home")></a></h4>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Kupione</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("Kupione", "bought", "home")></a></h4>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Komentarze</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("Komentarze", "comments", "home")></a></h4>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Edytuj dane</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("Edytuj dane", "profile", "home")></a></h4>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Ustawienia zakupów</a></h4>
+                            <h4 class="panel-title"><a @Html.ActionLink("Ustawienia zakupów", "shoppingSettings", "home")></a></h4>
                         </div>
                     </div>
                 </div>
@@ -63,11 +63,10 @@
     
 <!--/category-products-->
 
-    <div class="col-sm-9 padding-right">
+    <div class="col-sm-6 padding-right">
         <div class="features_items">
             <h2 class="title text-center">Konto</h2>
 
-                    <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.idAccount)
 

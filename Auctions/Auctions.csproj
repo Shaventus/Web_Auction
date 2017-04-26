@@ -400,6 +400,12 @@
     <Content Include="Views\Home\profile.cshtml" />
     <Content Include="Views\Home\favorites.cshtml" />
     <Content Include="Views\Home\MyAuctions.cshtml" />
+    <Content Include="Views\Home\observed.cshtml" />
+    <Content Include="Views\Home\ebooks.cshtml" />
+    <Content Include="Views\Home\payu.cshtml" />
+    <Content Include="Views\Home\bought.cshtml" />
+    <Content Include="Views\Home\comments.cshtml" />
+    <Content Include="Views\Home\shoppingSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,6 +20,44 @@ namespace Auctions.Controllers
             return View();
         }
 
+        public ActionResult MyAuctions()
+        {
+            return View();
+        }
+
+        public ActionResult observed()
+        {
+            return View();
+        }
+
+        public ActionResult ebooks()
+        {
+            return View();
+        }
+
+        public ActionResult payu()
+        {
+            return View();
+        }
+
+        public ActionResult bought()
+        {
+            return View();
+        }
+
+        public ActionResult comments()
+        {
+            return View();
+        }
+
+        public ActionResult shoppingSettings()
+        {
+            return View();
+        }
+
+
+
+
         public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
