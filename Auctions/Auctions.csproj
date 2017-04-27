@@ -406,6 +406,7 @@
     <Content Include="Views\Home\bought.cshtml" />
     <Content Include="Views\Home\comments.cshtml" />
     <Content Include="Views\Home\shoppingSettings.cshtml" />
+    <Content Include="Views\Home\adminaccounts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

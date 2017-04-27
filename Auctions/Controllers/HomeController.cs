@@ -44,7 +44,8 @@ namespace Auctions.Controllers
 
         public ActionResult bought()
         {
-            return View();
+            var buy = db.buy.Include(s => s.account).Include(s => s.item);
+            return View(buy.ToList());
         }
 
         public ActionResult comments()
@@ -57,7 +58,11 @@ namespace Auctions.Controllers
             return View();
         }
 
-
+        public ActionResult adminaccounts()
+        {
+            var account = db.account.Include(a => a.ban);
+            return View(account.ToList());
+        }
 
 
         public ActionResult shop()
