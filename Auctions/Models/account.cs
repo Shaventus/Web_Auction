@@ -34,7 +34,7 @@ namespace Auctions.Models
         public string nick { get; set; }
         public string icon { get; set; }
         public Nullable<sbyte> promo { get; set; }
-        public string age { get; set; }
+        public int age { get; set; }
     
         public virtual ban ban { get; set; }
         public virtual ICollection<buy> buy { get; set; }
