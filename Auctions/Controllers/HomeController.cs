@@ -58,7 +58,7 @@ namespace Auctions.Controllers
             return View();
         }
      
-            {
+            
         public ActionResult adminaccounts()
         {
             var account = db.account.Include(a => a.ban);
