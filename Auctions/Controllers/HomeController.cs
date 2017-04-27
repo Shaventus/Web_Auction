@@ -200,14 +200,14 @@ namespace Auctions.Controllers
                         Session["LoggedAs"] = v.nick.ToString();
                         Session["RoleId"] = v.role.First().idrole;
 
-                        int id = int.Parse(Session["RoleId"].ToString());
+                        int r = int.Parse(Session["RoleId"].ToString());
 
-                        if(id == 2)
+                        if(r == 2)
                         {
-                            return RedirectToAction("favorite");
-                        } else
+                            return RedirectToAction("profile");
+                        } else if( r == 1)
                         {
-                            return RedirectToAction("shop");
+                            return RedirectToAction("adminaccounts");
                         }
                     }
 
