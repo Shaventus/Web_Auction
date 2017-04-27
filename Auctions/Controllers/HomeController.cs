@@ -22,12 +22,14 @@ namespace Auctions.Controllers
 
         public ActionResult MyAuctions()
         {
-            return View();
+            var sell = db.sell.Include(s => s.account).Include(s => s.item);
+            return View(sell.ToList());
         }
 
         public ActionResult observed()
         {
-            return View();
+            var favorite = db.favorite.Include(f => f.account).Include(f => f.item);
+            return View(favorite.ToList());
         }
 
         public ActionResult ebooks()

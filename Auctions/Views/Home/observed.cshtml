@@ -1,4 +1,4 @@
-﻿@model Auctions.Models.account
+﻿@model IEnumerable<Auctions.Models.favorite>
 
 @{
     ViewBag.Title = "Observed";
@@ -64,7 +64,47 @@
         <!--/category-products-->
 
         <div class="col-sm-9 padding-right">
-            Zawartość strony
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.account.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.item.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.item.category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.item.price)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.account.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item.category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item.price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idfavorite }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.idfavorite }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idfavorite })
+                        </td>
+                    </tr>
+                }
+
+            </table>
         </div>
     </div>
 
