@@ -196,7 +196,17 @@ namespace Auctions.Controllers
                     {
                         Session["LogedUserID"] = v.idAccount.ToString();
                         Session["LoggedAs"] = v.nick.ToString();
-                        return RedirectToAction("shop");
+                        Session["RoleId"] = v.role.First().idrole;
+
+                        int id = int.Parse(Session["RoleId"].ToString());
+
+                        if(id == 2)
+                        {
+                            return RedirectToAction("favorite");
+                        } else
+                        {
+                            return RedirectToAction("shop");
+                        }
                     }
 
                 }
