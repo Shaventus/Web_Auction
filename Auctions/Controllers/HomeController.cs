@@ -128,6 +128,7 @@ namespace Auctions.Controllers
             if (ModelState.IsValid)
             {
                 db.account.Add(account);
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
