@@ -164,8 +164,12 @@
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
                     <!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
-                    <table class="table">
+
+                    <div class="col-sm-6">
+                        <div class="product-image-wrapper">
+                            
+                <table class="table">
+
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.name)
@@ -207,6 +211,156 @@
                         }
 
                     </table>
+                         </div>
+</div>
+
+                    <div class="col-sm-6">
+                        <div class="product-image-wrapper">
+
+                            <table class="table">
+
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.minprice)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.buy_now)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.category.name)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.minprice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.buy_now)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.category.name)
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="product-image-wrapper">
+
+                            <table class="table">
+
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.minprice)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.buy_now)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.category.name)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.minprice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.buy_now)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.category.name)
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="product-image-wrapper">
+
+                            <table class="table">
+
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.minprice)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.buy_now)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.category.name)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.minprice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.buy_now)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.category.name)
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+
                 </div><!--features_items-->
             </div>
         </div>
