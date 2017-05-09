@@ -62,14 +62,15 @@ namespace Auctions.Controllers
         {
             return View();
         }
-
+     
+            
         public ActionResult adminaccounts()
         {
             var account = db.account.Include(a => a.ban);
             return View(account.ToList());
         }
 
-
+    
         public ActionResult shop()
         {
             ViewBag.Message = "Your application description page.";
