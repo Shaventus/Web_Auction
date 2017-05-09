@@ -44,6 +44,7 @@
                                 {
                                   
                                     <li><i class="fa fa-user">@Html.ActionLink(" Moje konto", "Profile", "home")</i> </li>
+                                    <li><i class="fa fa-user">@Html.ActionLink(" Chat", "chat", "home")</i> </li>
                                     <li><i class="fa fa-star">@Html.ActionLink(" Lista życzen", "favorites", "home")</i> </li>
                                     <li><i class="fa fa-lock">@Session["LoggedAs"].ToString() @Html.ActionLink(" - Wyloguj", "LogOut", "home")</i> </li>
                                 }

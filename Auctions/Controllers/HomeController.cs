@@ -20,6 +20,11 @@ namespace Auctions.Controllers
             return View();
         }
 
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
         public ActionResult MyAuctions()
         {
             var sell = db.sell.Include(s => s.account).Include(s => s.item);
