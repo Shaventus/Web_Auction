@@ -15,14 +15,39 @@ namespace Auctions.Controllers
         private auctionsEntities db = new auctionsEntities();
 
 
-        public ActionResult index()
+        public ActionResult index(String searchString)
         {
+          
             return View();
         }
 
         public ActionResult Chat()
         {
             return View();
+        }
+        public ActionResult Search(String name, String idCategory)
+        {
+            
+            var item = from s in db.item
+                       select s;
+            item = db.item.Include(i => i.category);
+            ViewBag.category = new SelectList(db.category, "idcategory", "name");
+            if (!String.IsNullOrEmpty(name))
+            {
+                item = item.Where(c => c.name.Contains(name));
+                         
+
+            }
+            if (!String.IsNullOrEmpty(idCategory))
+            {
+                int cat = Convert.ToInt32(idCategory);
+                return View(item.Where(x => x.category_idcategory == cat));
+            }
+            else
+            {
+                return View(item);
+            }
+          
         }
 
         public ActionResult MyAuctions()
