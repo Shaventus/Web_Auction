@@ -6,7 +6,21 @@
 
 <section id="advertisement">
     <div class="container">
-        <img src="/images/shop/advertisement.jpg" alt="" />
+
+        <p>
+            @using (Html.BeginForm("shop", "Home", FormMethod.Get))
+            {
+            <p>
+                Wyszukaj: @Html.TextBox("name") <br />
+                <input type="submit" value="Search for name" />
+                Kateogria: @Html.DropDownList("category", String.Empty)
+
+
+
+
+            </p>
+            }
+            </p>
     </div>
 </section>
 
