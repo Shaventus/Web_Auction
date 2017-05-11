@@ -21,6 +21,11 @@ namespace Auctions.Controllers
             return View();
         }
 
+        public ActionResult black()
+        {
+            return View();
+        } 
+
         public ActionResult Chat()
         {
             return View();
