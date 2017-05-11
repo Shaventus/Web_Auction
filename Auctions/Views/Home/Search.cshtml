@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Auctions.Models.item>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<p>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+    {
+    <p>
+        Wyszukaj: @Html.TextBox("name") <br />
+        <input type="submit" value="Search for name" />
+        Kateogria: @Html.DropDownList("category", String.Empty)
+
+
+
+
+    </p>
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minprice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.buy_now)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minprice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.buy_now)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category_idcategory)
+        </td>
+   
+    </tr>
+}
+
+</table>
