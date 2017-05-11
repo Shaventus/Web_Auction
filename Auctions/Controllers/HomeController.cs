@@ -34,7 +34,10 @@ namespace Auctions.Controllers
         {
             return View();
         }
-        public ActionResult Search(String name, String idCategory)
+
+      
+        
+        public ActionResult Search(String name, String category)
         {
             
             var item = from s in db.item
@@ -44,18 +47,18 @@ namespace Auctions.Controllers
             if (!String.IsNullOrEmpty(name))
             {
                 item = item.Where(c => c.name.Contains(name));
-                         
 
+                if (!String.IsNullOrEmpty(category))
+                {
+                    int cat = Convert.ToInt32(category);
+                    return View(item.Where(x => x.category_idcategory == cat));
+                }
+                else
+                {
+                    return View(item);
+                }
             }
-            if (!String.IsNullOrEmpty(idCategory))
-            {
-                int cat = Convert.ToInt32(idCategory);
-                return View(item.Where(x => x.category_idcategory == cat));
-            }
-            else
-            {
-                return View(item);
-            }
+            else return View(item);
           
         }
 
