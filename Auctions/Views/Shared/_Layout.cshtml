@@ -13,7 +13,13 @@
     @Styles.Render("~/Content/prettyPhoto.css")
     @Styles.Render("~/Content/price-range.css")
     @Styles.Render("~/Content/animate.css")
+@if (Session["licznik"] != null)
+{
+    @Styles.Render("~/Content/main1.css")
+}
+else { 
     @Styles.Render("~/Content/main.css")
+}
     @Styles.Render("~/Content/responsive.css")
     @Scripts.Render("~/bundles/jquery.js")
     @Scripts.Render("~/bundles/bootstrap.min.js")
@@ -103,7 +109,8 @@
                                 <li class="dropdown">
                                     <a href="#">Wyglad strony<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li>@Html.ActionLink("czarny", "black", "home")</li>
+                                        <li>@Html.ActionLink("czarny", "black", "home")  </li>
+                                        <li>@Html.ActionLink("biały", "white", "home")  </li>
                                         
 
 

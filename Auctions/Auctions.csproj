@@ -434,7 +434,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\Home\black.cshtml" />
-    <Content Include="Views\_ViewStartBlack.cshtml" />
+    <Content Include="Views\Home\white.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

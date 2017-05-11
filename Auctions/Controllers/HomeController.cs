@@ -20,6 +20,10 @@ namespace Auctions.Controllers
           
             return View();
         }
+        public ActionResult white()
+        {
+            return View();
+        }
 
         public ActionResult black()
         {
