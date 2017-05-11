@@ -6,38 +6,39 @@
 
 <section id="advertisement">
     
-<div class="login-form">
+
     <p>
         @using (Html.BeginForm("shop", "Home", FormMethod.Get))
         {
         <p>
-
-            <div class="col-sm-3 ">
-
+            <div class="login-form">
                 <form>
-                    Wyszukaj: @Html.TextBox("name") <br/>
+                    <div class="col-sm-3 ">
+
+
+                        Wyszukaj: @Html.TextBox("name") <br />
+
+
+                    </div>
                 </form>
-            
-    </div>
 
+                <input type="submit" value="Search for name" class="btn btn-default" />
 
-        <input type="submit" value="Search for name" class="btn btn-default" />
-    
-    <h2></h2>
-   
-    <div class="col-sm-4 ">
-        
-            @Html.DropDownList("category", "Wybierz kategorię")
-        
-        </div>
+                <h2></h2>
 
+                <div class="col-sm-4 ">
+
+                    @Html.DropDownList("category", "Wybierz kategorię")
+
+                </div>
+                </div>
 
 
 </p>
         }
 
             </p>
-    </div>
+    
 </section>
 
 <section>
