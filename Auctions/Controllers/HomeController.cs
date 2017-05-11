@@ -35,6 +35,32 @@ namespace Auctions.Controllers
             return View();
         }
 
+        
+        public ActionResult Search(String name, String category)
+        {
+            
+            var item = from s in db.item
+                       select s;
+            item = db.item.Include(i => i.category);
+            ViewBag.category = new SelectList(db.category, "idcategory", "name");
+            if (!String.IsNullOrEmpty(name))
+            {
+                item = item.Where(c => c.name.Contains(name));
+
+                if (!String.IsNullOrEmpty(category))
+                {
+                    int cat = Convert.ToInt32(category);
+                    return View(item.Where(x => x.category_idcategory == cat));
+                }
+                else
+                {
+                    return View(item);
+                }
+            }
+            else return View(item);
+          
+        }
+
         public ActionResult MyAuctions()
         {
             var sell = db.sell.Include(s => s.account).Include(s => s.item);
@@ -80,29 +106,12 @@ namespace Auctions.Controllers
             return View(account.ToList());
         }
 
-        public ActionResult shop(String name, String category)
+    
+        public ActionResult shop()
         {
-
-            var item = from s in db.item
-                       select s;
-            item = db.item.Include(i => i.category);
-            ViewBag.category = new SelectList(db.category, "idcategory", "name");
-            if (!String.IsNullOrEmpty(name))
-            {
-                item = item.Where(c => c.name.Contains(name));
-
-                if (!String.IsNullOrEmpty(category))
-                {
-                    int cat = Convert.ToInt32(category);
-                    return View(item.Where(x => x.category_idcategory == cat));
-                }
-                else
-                {
-                    return View(item);
-                }
-            }
-            else return View(item);
-
+            ViewBag.Message = "Your application description page.";
+            var item = db.item.Include(i => i.category);
+            return View(item.ToList());
         }
 
         public ActionResult profile()
