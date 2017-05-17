@@ -131,6 +131,22 @@ namespace Auctions.Controllers
             return View(favorite.ToList());
         }
 
+        public ActionResult cart(int id)
+        {
+            if (Session["cart"] == null)
+            {
+                List<item> cart = new List<item>();
+                cart.Add(db.item.Find(id));
+                Session["cart"] = cart;
+            } else
+            {
+                List<item> cart = (List<item>)Session["cart"];
+                cart.Add(db.item.Find(id));
+                Session["cart"] = cart;
+            }
+            return View((List<item>)Session["cart"]);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult profile([Bind(Include = "idAccount,name,surname,password,nick,icon,promo,age")] account account)
@@ -186,13 +202,6 @@ namespace Auctions.Controllers
 
             return View();
         }
-
-        public ActionResult cart()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
         public ActionResult checkout()
         {
             ViewBag.Message = "Your application description page.";
@@ -232,6 +241,7 @@ namespace Auctions.Controllers
                         Session["LogedUserID"] = v.idAccount.ToString();
                         Session["LoggedAs"] = v.nick.ToString();
                         Session["RoleId"] = v.role.First().idrole;
+                        
 
                         int r = int.Parse(Session["RoleId"].ToString());
 
