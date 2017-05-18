@@ -129,7 +129,18 @@ else {
     </header><!--/header-->
 
     <div class="container body-content">
+       
         @RenderBody()
+     @if (Session["k"] == null)
+
+     {
+         Session["k"] = 1;
+        <script>
+
+                alert("Strona korzysta z plików cookies w celu realizacji usług i zgodnie z Polityką Plików Cookies. Możesz określić warunki przechowywania lub dostępu do plików cookies w Twojej przeglądarce.  ");</script>
+     }
+    
+
     </div>
     <hr />
     <footer id="footer">

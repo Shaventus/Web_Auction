@@ -5,40 +5,45 @@
 }
 
 <section id="advertisement">
-    
+    <div class="container">
+        <div class="login-form">
 
-    <p>
-        @using (Html.BeginForm("shop", "Home", FormMethod.Get))
-        {
-        <p>
-            <div class="login-form">
-                <form>
-                    <div class="col-sm-3 ">
+            @using (Html.BeginForm("shop", "Home", FormMethod.Get))
+            {
 
 
-                        Wyszukaj: @Html.TextBox("name") <br />
 
 
-                    </div>
-                </form>
+                <div class="col-sm-3 ">
+
+
+                    <form>
+                        Wyszukaj: @Html.TextBox("name")
+                    </form>
+
+                </div>
+                <br />
+
+
 
                 <input type="submit" value="Search for name" class="btn btn-default" />
 
+
                 <h2></h2>
 
-                <div class="col-sm-4 ">
+                <div class="login-form">
+                    <div class="col-sm-4 ">
 
-                    @Html.DropDownList("category", "Wybierz kategorię")
+                        @Html.DropDownList("category", "Wybierz kategorię")
 
+                    </div>
                 </div>
-                </div>
+
+            }
+        </div>
+    </div>
 
 
-</p>
-        }
-
-            </p>
-    
 </section>
 
 <section>
@@ -188,19 +193,19 @@
                 </div>
             </div>
 
-            
 
-             
 
-@foreach (var item in Model)
-{
-            <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <table class="table">
 
-                                <img src="/images/home/product3.jpg" alt="" />
+
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <table class="table">
+
+                                    <img src="/images/home/product3.jpg" alt="" />
 
 
                                     <tr>
@@ -220,33 +225,32 @@
                                             @Html.DisplayFor(modelItem => item.category.name)
                                         </td>
                                     </tr>
-                               
 
-                            </table>
-                            <div class="product-overlay">
-                                <div class="overlay-content">
-                                  
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+
+                                </table>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
                                     <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li>@Html.ActionLink("Order Now","cart","Home",new { id = item.iditem }, null)</li>
+                                    <li>@Html.ActionLink("Order Now", "cart", "Home", new { id = item.iditem }, null)</li>
                                 </ul>
                             </div>
-                       
+
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
-}
-        
+            }
 
 
-    </div><!--features_items-->
+
+        </div><!--features_items-->
     </div>
- 
-</section>
 
+</section>
