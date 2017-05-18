@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Net;
 using Auctions.Models;
+using System.Net.Mail;
 
 namespace Auctions.Controllers
 {
@@ -182,6 +183,15 @@ namespace Auctions.Controllers
                 db.SaveChangesAsync();
                 
                 db.SaveChanges();
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("userName", "password");
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                String from = "someone@somewhere.com";
+                String to = account.icon;
+                MailMessage mailMessage = new MailMessage(from, to); 
+                mailMessage.Subject = "Hello There";
+                mailMessage.Body = "Hello my friend!";
+                client.Send(mailMessage);
                 return RedirectToAction("Index");
             }
 
