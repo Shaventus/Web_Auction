@@ -49,7 +49,7 @@ else {
                                 <li><i class="fa fa-crosshairs">@Html.ActionLink(" Checkout", "checkout", "home")</i> </li>
                                 @if (Session["cart"] != null)
                                 {
-                                <li><i class="fa fa-shopping-cart">@Html.ActionLink(" Koszyk", "cart", "home")</i> </li>
+                                <li><i class="fa fa-shopping-cart">@Html.ActionLink(" Koszyk", "cart", "home", new { id = 0 }, null)</i> </li>
                                 }
                                 @if (Session["LogedUserID"] != null)
                                 {
