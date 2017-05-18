@@ -133,18 +133,22 @@ namespace Auctions.Controllers
 
         public ActionResult cart(int id)
         {
-            if (Session["cart"] == null)
+            if (id != 0)
             {
-                List<item> cart = new List<item>();
-                cart.Add(db.item.Find(id));
-                Session["cart"] = cart;
-            } else
-            {
-                List<item> cart = (List<item>)Session["cart"];
-                cart.Add(db.item.Find(id));
-                Session["cart"] = cart;
+                if (Session["cart"] == null)
+                {
+                    List<item> cart = new List<item>();
+                    cart.Add(db.item.Find(id));
+                    Session["cart"] = cart;
+                }
+                else
+                {
+                    List<item> cart = (List<item>)Session["cart"];
+                    cart.Add(db.item.Find(id));
+                    Session["cart"] = cart;
+                }
             }
-            return View((List<item>)Session["cart"]);
+             return View((List<item>)Session["cart"]);
         }
 
         [HttpPost]
