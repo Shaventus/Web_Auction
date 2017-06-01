@@ -25,7 +25,14 @@ namespace Auctions.Controllers
         {
             return View();
         }
-
+        public ActionResult question ()
+        {
+            return View();
+        }
+        public ActionResult  regulations()
+        {
+            return View();
+        }
         public ActionResult black()
         {
             return View();

@@ -1,0 +1,44 @@
+﻿@model Auctions.Models.account
+
+@{
+    ViewBag.Title = "question";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="left-sidebar">
+                <h2>Najczęściej zadawane pytania</h2>
+                1. Czy muszę rejestrować konto aby dokonać zakupów?<br />
+                Nie. Rejestracja konta jest dobrowolna i nie jest wymagana do złożenia zamówienia. Rejestrując konto w naszym sklepie zyskujecie jednak Państwo dostęp do wielu dodatkowych usług. Są to m.in: <br/>
+                - możliwość sprawdzenia historii składanych zamówień,<br />
+                - możliwość otrzymania dodatkowego rabatu wynikającego z wcześniej realizowanych zleceń,<br />
+                - automatyczne otrzymywanie informacji (newsletter) o nowościach, promocjach, akcjach specjalnych, itd.<br />
+                <br />
+                2. Czy mogę złożyć zamówienie telefonicznie?<br />
+                Tak. W naszym sklepie umożliwiamy telefoniczne składanie zamówień.<br />
+                <br />
+                3. Ile zapłacę za przesyłkę?<br />
+                Kupując w naszym sklepie Klient za przesyłkę płaci tylko raz. Informację o dostępnych opcjach dostawy oraz zbiorczym koszcie transportu otrzymają Państwo w podsumowaniu zlecenia (koszyk). Kompendium wiedzy z w/w tematu dostępne jest również w regulaminie <br />
+                <br />
+                4. Czy otrzymam paragon albo fakturę VAT?<br />
+                Jesteśmy legalnie działającym podmiotem gospodarczym, dlatego do każdego Państwa zakupu dołączamy paragon lub fakturę VAT.<br />
+                <br />
+                5. Czy przysługuje mi prawo do zwrotu zamówionego towaru, jego wymiany bądź reklamacji?<br />
+                Zakupiony produkt mogą Państwo zwrócić, wymienić, bądź go reklamować w terminie 14 dni od daty jego zakupu. Szczegółowe informacje znajdują się w regulaminie sklepu.<br />
+                </div>
+            </div>
+        </div>
+
+        <!--/category-products-->
+
+       
+
+}
+
+<
